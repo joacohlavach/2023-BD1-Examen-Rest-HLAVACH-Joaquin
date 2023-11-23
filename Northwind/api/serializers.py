@@ -55,13 +55,12 @@ class CountrySerializer(serializers.Serializer):
    orderid = serializers.IntegerField()
    shippingcountry = serializers.CharField()
 
-class Punto1Serializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    nombre = serializers.CharField()
-    apellido = serializers.CharField()
-    reportsto = EmployeeSerializer(many=False,required=False)
-    nacimiento = serializers.DateTimeField()
-    salario = serializers.IntegerField()
+#class Punto1Serializer(serializers.Serializer):
+#    nombre = serializers.CharField()
+#    apellido = serializers.CharField()
+#    reportsto = EmployeeSerializer(many=False,required=False)
+#    nacimiento = serializers.DateTimeField()
+#    salario = serializers.IntegerField()
    
 #class Punto1Serializer(serializers.Serializer):
 #    id = serializers.IntegerField()

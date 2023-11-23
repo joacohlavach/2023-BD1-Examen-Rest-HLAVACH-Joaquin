@@ -304,6 +304,7 @@ def get_orders_with_details(request):
 
 #-----------------y
 
+@api_view(["GET"])
 def punto1(request):
     letra = request.query_params.get("letter")
     year = request.query_params.get("year")

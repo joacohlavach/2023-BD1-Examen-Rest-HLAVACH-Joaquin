@@ -24,6 +24,7 @@ urlpatterns = [
     path("employee/<int:pk>/", getEmployeeById, name="getEmployeeById"),
 
     #pruebas
+    path("punto1/", punto1),
     path("test/", create_order_with_details, name="test"),
     #path("pruebacountry/", pruebacountry, name="test"),
-]
+    ]
