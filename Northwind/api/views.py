@@ -131,9 +131,9 @@ def getAllProducts(request):
         return Response(productNuevo.errors, status=status.HTTP_400_BAD_REQUEST)
 
 @api_view(["GET", "PUT", "DELETE"])
-def getProductById(request, pk):
+def getProductById(request, pk, pk2):
     try:
-        product = Products.objects.get(productid=pk)
+        product = Products.objects.get(productid=pk, productname=pk2)
     except Exception:
         return Response(status=status.HTTP_204_NO_CONTENT)
     
@@ -228,6 +228,8 @@ def getOrderDetailById(request, pk, pk2):
     if request.method == 'DELETE':
         order_detail.delete()
         return Response(status=status.HTTP_200_OK)
+    
+
 
 # --- EMPLOYEES ------------------------------------------------------------------------------------
 
@@ -277,7 +279,29 @@ def getEmployeeById(request, pk):
         employee.delete()
         return Response(status=status.HTTP_200_OK)
 
-# ---------------------------------------- PRUEBAS -------------------------------------------
+# ---------------------------------------- EVALUACION -------------------------------------------
+def pruebaorder(request):
+    if request.method == 'GET':
+        orders = Orderdetails.objects.filter(orderid=orders, productid=orders)
+        resultados = []
+
+        for a in orders:
+            resultado = {
+                "orderid" : a.orderid,
+                "productid" : a.productid
+            }
+            resultados.append(resultado)
+        order_serializer = pruebaOrder(resultados, many=True)
+        return Response(order_serializer.data, status=status.HTTP_200_OK)
+
+
+def ActualizarProductos(request):
+    if request.method == 'PUT':
+        serializer = ActualizarSerializer(data=request.data)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+    
+    if 'productid' not in request.data:
+            request.data['productid'] = Products.productid
 
 @api_view(["POST"])
 def create_order_with_details(request):
@@ -295,14 +319,14 @@ def create_order_with_details(request):
                 return Response(order_detail_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(order_serializer.data, status=status.HTTP_201_CREATED)
     return Response(order_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+# ---------------------------------------ejemplos mios---------------------------
+
 
 @api_view(["GET"])
 def get_orders_with_details(request):
     orders = Orders.objects.all()
     order_serializer = OrderSerializer(orders, many=True)
     return Response(order_serializer.data, status=status.HTTP_200_OK)
-
-#-----------------y
 
 @api_view(["GET"])
 def punto1(request):
@@ -323,20 +347,6 @@ def punto1(request):
     serializados = Punto1Serializer(resultados, many=True)
     return Response(serializados.data)
 
-def pruebacountry(request):
-    if request.method == 'GET':
-        country = request.query_params.get("country")
-        orders = Orders.objects.filter(shipcountry=country)
-        resultados = []
-
-        for order in orders:
-            resultado = {
-                "orderid" : order.orderid,
-                "shippingcountry" : order.shipcountry
-            }
-            resultados.append(resultado)
-        order_serializer = CountrySerializer(resultados, many=True)
-        return Response(order_serializer.data)
 
 import datetime
 @api_view(['GET'])
@@ -365,6 +375,7 @@ def ejemplo1(request):
             resultados.append(resultado)
         serializados = Punto1Serializer(resultados, many=True)
         return Response(serializados.data)
+
 
 #employees = Employees.objects.filter(birthdate__lt = datetime.date(1950,1,3))
 #clientes = Clientes.objects.all()[:4]

@@ -12,7 +12,7 @@ urlpatterns = [
     path("category/<str:pk>", getCategoryById , name="getCategoryById"), 
 
     path("product/", getAllProducts, name="getAllProducts"),
-    path("product/<str:pk>", getProductById , name="getProductById"), 
+    path("product/<str:pk>/<str:pk2>", getProductById , name="getProductById"), 
 
     path("order/", getAllOrders, name="getAllOrders"),
     path("order/<str:pk>/", getOrderById, name="getOrderById"),
@@ -23,8 +23,9 @@ urlpatterns = [
     path("employee/", getAllEmployees, name="getAllEmployees"),
     path("employee/<int:pk>/", getEmployeeById, name="getEmployeeById"),
 
-    #pruebas
-    path("punto1/", punto1),
-    path("test/", create_order_with_details, name="test"),
+    #-------pruebas--------
+    #path("punto1/", punto1),
     #path("pruebacountry/", pruebacountry, name="test"),
+    path("test/", create_order_with_details, name="test"),
+    path("pruebaorder/", pruebaorder),
     ]

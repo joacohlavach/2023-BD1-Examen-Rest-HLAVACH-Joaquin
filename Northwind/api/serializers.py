@@ -51,9 +51,18 @@ class Punto1Serializer(serializers.Serializer):
    nombre = serializers.CharField()
    birthdate = serializers.DateTimeField()
 
-class CountrySerializer(serializers.Serializer):
+class pruebaOrder(serializers.Serializer):
    orderid = serializers.IntegerField()
-   shippingcountry = serializers.CharField()
+   productid = serializers.CharField()
+
+class CategoriaSerializer(serializers.Serializer):
+   categoryid = serializers.IntegerField()
+   categoryname = serializers.CharField()
+
+class ActualizarSerializer(serializers.Serializer):
+   fechainicio = serializers.DateTimeField()
+   categoryid = serializers.IntegerField()
+   shipperid = serializers.IntegerField()
 
 #class Punto1Serializer(serializers.Serializer):
 #    nombre = serializers.CharField()
