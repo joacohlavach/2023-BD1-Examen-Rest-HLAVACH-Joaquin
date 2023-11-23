@@ -328,10 +328,10 @@ def pruebacountry(request):
         orders = Orders.objects.filter(shipcountry=country)
         resultados = []
 
-        for orders in orders:
+        for order in orders:
             resultado = {
-                "orderid" : orders.orderid,
-                "shippingcountry" : orders.shipcountry
+                "orderid" : order.orderid,
+                "shippingcountry" : order.shipcountry
             }
             resultados.append(resultado)
         order_serializer = CountrySerializer(resultados, many=True)
@@ -362,7 +362,7 @@ def ejemplo1(request):
                         }
             
             resultados.append(resultado)
-        serializados = Punto1Serializer(resultados, many=True)#creas un serializador nuevo para que tenga solo los atributos que le queres pasar, en este caso "cod_cliente","nombre","apellido"
+        serializados = Punto1Serializer(resultados, many=True)
         return Response(serializados.data)
 
 #employees = Employees.objects.filter(birthdate__lt = datetime.date(1950,1,3))
