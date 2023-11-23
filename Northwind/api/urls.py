@@ -25,4 +25,5 @@ urlpatterns = [
 
     #pruebas
     path("test/", create_order_with_details, name="test"),
+    #path("pruebacountry/", pruebacountry, name="test"),
 ]
